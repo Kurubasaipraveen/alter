@@ -1,0 +1,146 @@
+.login-content {
+  display: flex;
+  flex-direction: column; /* Stack elements in a column */
+  align-items: center; /* Center all items horizontally */
+  justify-content: center; /* Center items vertically */
+  text-align: center; 
+  background-color: #ffffff;
+  height: 50%; /* Occupy the full height of the parent container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the login box */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Space inside the login box */
+}
+
+
+.head {
+  display: flex;
+  align-items: center; 
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.image1{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image2{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image3{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image4{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image5{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image6{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image7{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+.image8{
+  Width:125px;
+  Height:207px;
+  background-size: cover;
+}
+
+.container-first{
+  display: flex;
+  flex-direction: row;
+}
+.first-row-image{
+  display: flex;
+  flex-direction: column;
+}
+span {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.images-logo {
+  height: 80px;
+  margin: 0 auto; /* Centering horizontally */
+}
+
+.login-container {
+  width: 400px;
+  margin: 0 auto; /* Center horizontally */
+  text-align: center;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.feed-head{
+  text-align: start;
+}
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding: 20px 15px;
+  text-align: center;
+  background-color: black;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 20px auto; /* Center horizontally */
+}
+
+button {
+  margin: 0 auto; /* Center horizontally */
+  display: block; /* Ensure button behaves like a block-level element */
+}
+
+.google-login img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.user-profile {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 15px auto; /* Center horizontally */
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center; /* Center the text */
+}
+
+h3 {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  font-size: 30px;
+  margin: 0; /* Remove unwanted margins */
+}
+
+

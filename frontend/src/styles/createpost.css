@@ -1,0 +1,247 @@
+/* Main container */
+.create-post-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.create-post-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.create-post-header i {
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Textarea */
+.post-input {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333333;
+  resize: none;
+  outline: none;
+  background-color: #f9f9f9;
+}
+
+.post-input::placeholder {
+  color: #aaaaaa;
+}
+
+/* Scrollable Preview Container */
+.preview-container {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  position: relative;
+  margin: 10px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+/* Image Counter */
+.image-counter {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 12px;
+}
+
+/* Image Wrapper */
+.image-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* Preview Images */
+.preview-image {
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Remove Icon */
+.remove-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+}
+
+
+
+.file-icon {
+  color: red;
+  font-size: 18px;
+}
+
+.camera-icon {
+  color: blue;
+  font-size: 18px;
+}
+
+/* Create Button */
+.create-button {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-button:hover {
+  background-color: #333333;
+}
+/* Swipeable Container */
+.swipe-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+/* Swipe Image */
+.swipe-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Remove Icon */
+.remove-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: red;
+  cursor: pointer;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: #000;
+}
+/* Mobile devices (max-width 768px): Show all options (File, Camera, Gallery, Video) */
+@media (max-width: 768px) {
+  .post-options {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+  }
+
+  .post-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: #333333;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Show all icons (file, camera, gallery, video) on mobile */
+  .file-icon, .camera-icon, .gallery-icon, .video-icon {
+    display: block; 
+  }
+
+  /* Optional: Adjust icon size for mobile */
+  .file-icon, .camera-icon, .gallery-icon, .video-icon {
+    font-size: 22px;
+  }
+}
+
+/* Desktop and larger screens (min-width 769px): Show only File and Camera options */
+@media (min-width: 769px) {
+  .post-options {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content:start;
+  }
+
+  .post-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: #333333;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Show only File and Camera options on Desktop */
+  .file-icon, .camera-icon {
+    display: block; /* Show file and camera */
+  }
+
+  /* Hide Gallery and Video options on Desktop */
+  .image-icon, .video-icon {
+    display: none; /* Hide gallery and video on desktop */
+  }
+
+  /* Optional: Adjust icon size for desktop */
+  .file-icon, .camera-icon {
+    font-size: 18px; /* Adjust size for desktop */
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "alther-office",
+    "npm start": "alther-office",
+    "alter-app": "alther-office"
+  },
+  "targets": {},
+  "etags": {}
+}
