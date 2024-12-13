@@ -18,7 +18,9 @@ const EditProfile = () => {
   );
 
   const navigate = useNavigate();
-
+  const Createpost=()=>{
+    navigate('/create')
+  }
   const handleImageChange = (setImage) => {
     const input = document.createElement("input");
     input.type = "file";
@@ -104,7 +106,7 @@ const EditProfile = () => {
       <button className="save-button" onClick={handleSave}>
         Save
       </button>
-      <button className="add-post-button">+</button>
+      <button className="add-post-button" onClick={Createpost}>+</button>
     </div>
   );
 };

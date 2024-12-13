@@ -131,4 +131,71 @@
   
   .save-button:hover {
     background-color: #0056b3;
-  }
+  }@media only screen and (max-width: 768px) {
+    .edit-profile-container {
+        padding: 15px;
+    }
+
+    .header {
+        padding: 8px;
+    }
+
+    .cover-container {
+        height: 250px; /* Adjusted height for mobile */
+    }
+
+    .image {
+        height: 200px; /* Adjusted image size */
+    }
+
+    .profile-picture-container {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-section {
+        margin: 15px 0;
+    }
+
+    .form-section {
+        padding: 15px;
+    }
+
+    .save-button {
+        padding: 12px 0;
+    }
+}
+
+/* For very small devices (phones in portrait mode) */
+@media only screen and (max-width: 480px) {
+    .header {
+        padding: 5px;
+    }
+
+    .cover-container {
+        height: 200px; /* Further reduced height */
+    }
+
+    .image {
+        height: 180px; /* Further reduced image size */
+    }
+
+    .profile-picture-container {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-section {
+        margin: 10px 0;
+    }
+
+    .form-section {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .save-button {
+        padding: 10px 0;
+        font-size: 14px; /* Smaller font size for buttons */
+    }
+}

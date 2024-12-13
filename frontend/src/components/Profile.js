@@ -9,6 +9,9 @@ const Profile = () => {
   const EditPlace=()=>{
     navigate('/edit')
   }
+  const Createpost=()=>{
+    navigate('/create')
+  }
   return (
     <div className="profile">
       
@@ -79,7 +82,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <button className="add-post-button">+</button>
+      <button className="add-post-button" onClick={Createpost}>+</button>
     </div>
   );
 };

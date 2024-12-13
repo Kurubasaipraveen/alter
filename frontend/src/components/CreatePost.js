@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import "../styles/createpost.css";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const [postContent, setPostContent] = useState("");
   const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const navigate=useNavigate()
   // Handle file upload (Image or Video)
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -28,6 +29,7 @@ const CreatePost = () => {
       reader.readAsDataURL(file);
     }
   };
+  
 
   // Handle camera capture (photo)
   const handleCameraClick = async () => {
@@ -134,6 +136,7 @@ const CreatePost = () => {
         alert("Post created successfully!");
         setPostContent(""); // Clear the content field
         setMedia([]); // Clear all selected media
+        navigate('/feed')
       } else {
         console.log("Failed to create post:", result); // Log failure response
         alert("Failed to create post.");
