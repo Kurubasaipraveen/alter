@@ -14,10 +14,11 @@ const Profile = () => {
       
       <div className="cover-container">
         <div className="image">
-        <i class="bi bi-arrow-left-short leftArrow" onClick={BackToFeed}></i>
         </div>
+        
+        
       </div>
-
+      <i class="bi bi-arrow-left-short " ></i>
       {/* Profile Details */}
       <div className="profile-details">
         <div className="first-row-profile">
@@ -78,8 +79,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
-      {/* Floating Add Button */}
       <button className="add-post-button">+</button>
     </div>
   );

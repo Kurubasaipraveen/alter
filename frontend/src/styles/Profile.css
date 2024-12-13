@@ -11,7 +11,6 @@
     background-size: cover;
     height: 373px;
     border-radius: 10px;
-    background-image: url('https://s3-alpha-sig.figma.com/img/d4b7/bb5d/bd8b3943a763e1d2e13b607efc1e224e?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=A1pL5l3UkYsKUQu~NsQFaKRw7PlByESy7RxouuE3Hwmt3DSbVicU-RffRXt9ZbYvCf3TLgPf5e4FtpcGWpE~-hBjPWqgdRQ9FQaz9A4AidFggdpWXL8jGK~xF4R~y3IE0OIAtPPpzBuNvjkBXcS~LqiXBJcffEiSHIMsAezKcO2ZH5TdVX53gdtO2kvCSCGUvGCYbJKMPOaU~jH5fyJ03dWX8il2084C80kpIvu7LU1IgyXmN-lvDqmd-VORxD5y355D~n4HWpvJiRa9K9wrDttiGafSz1jqjW1ka-ncrIoiN-SvTyM-wJ8n3LMNUfkbbAACRvCHNe2DNemxjt3eQw__');
   }
   .leftArrow{
     font-size: 50px;
@@ -27,8 +26,6 @@
   margin-left: 10px;
 }
 
-  
-  /* Cover Image */
   .cover-container {
     width: 100%;
     height: 200px;
@@ -42,8 +39,23 @@
     height: 100%;
     object-fit: cover;
   }
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+  }
   
-  /* Profile Details */
+  .back-button i {
+    margin-right: 8px;
+  }
+  
   .profile-details {
     display: flex;
     flex-direction: column;
@@ -97,8 +109,6 @@
     flex-direction: row;
   }
   
-  
-  /* Posts Section */
   .posts-header {
     margin: 30px 0 10px;
     font-size: 20px;
@@ -150,7 +160,6 @@
     color: #007bff;
   }
   
-  /* Floating Add Button */
   .add-post-button {
     position: fixed;
     bottom: 30px;

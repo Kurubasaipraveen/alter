@@ -24,7 +24,12 @@
     display: flex;
     align-items: center;
   }
-  
+  .edit-back{
+    display: flex;
+    justify-content: start;
+    margin-bottom: 180px;
+    margin-left: 10px;
+  }
   .image{
     background-size: cover;
     height: 373px;

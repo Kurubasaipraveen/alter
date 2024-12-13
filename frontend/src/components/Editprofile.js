@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "../styles/EditProfile.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 const EditProfile = () => {
+  const { userId } = useParams(); 
+  console.log("User ID:", userId); 
+
   const [name, setName] = useState("Sakshi Agarwal");
   const [bio, setBio] = useState(
     "Just someone who loves designing, sketching, and finding beauty in the little things 💕"
@@ -12,6 +16,8 @@ const EditProfile = () => {
   const [backgroundImage, setBackgroundImage] = useState(
     "https://s3-alpha-sig.figma.com/img/d4b7/bb5d/bd8b3943a763e1d2e13b607efc1e224e?Expires=1734912000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=A1pL5l3UkYsKUQu~NsQFaKRw7PlByESy7RxouuE3Hwmt3DSbVicU-RffRXt9ZbYvCf3TLgPf5e4FtpcGWpE~-hBjPWqgdRQ9FQaz9A4AidFggdpWXL8jGK~xF4R~y3IE0OIAtPPpzBuNvjkBXcS~LqiXBJcffEiSHIMsAezKcO2ZH5TdVX53gdtO2kvCSCGUvGCYbJKMPOaU~jH5fyJ03dWX8il2084C80kpIvu7LU1IgyXmN-lvDqmd-VORxD5y355D~n4HWpvJiRa9K9wrDttiGafSz1jqjW1ka-ncrIoiN-SvTyM-wJ8n3LMNUfkbbAACRvCHNe2DNemxjt3eQw__"
   );
+
+  const navigate = useNavigate();
 
   const handleImageChange = (setImage) => {
     const input = document.createElement("input");
@@ -29,13 +35,27 @@ const EditProfile = () => {
     };
     input.click();
   };
-  const navigate=useNavigate()
+  const handleSave = async () => {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('bio', bio);
+  
+    // If a new profile image is selected, append it
+    if (profileImage instanceof File) {
+      formData.append('profileImage', profileImage);
+    }
+  
+    // If a new background image is selected, append it
+    if (backgroundImage instanceof File) {
+      formData.append('backgroundImage', backgroundImage);
+    }
+  
+  };
+  
 
-  const handleSave = () => {
-    alert(
-      `Profile updated!`
-    );
-    navigate('/Feed')
+
+  const backToFeed = () => {
+    navigate("/feed");
   };
 
   return (
@@ -43,10 +63,14 @@ const EditProfile = () => {
       <div
         className="cover-container"
         style={{ backgroundImage: `url(${backgroundImage})` }}
-        onClick={() => handleImageChange(setBackgroundImage)}
       >
-        <h3><i className="bi bi-arrow-left"></i>Edit Post</h3>
-        <i className="bi bi-pencil-square edit-icon"></i>
+        <p className="edit-back" onClick={backToFeed}>
+          <i className="bi bi-arrow-left"></i> Back to Feed
+        </p>
+        <i
+          className="bi bi-pencil-square edit-icon"
+          onClick={() => handleImageChange(setBackgroundImage)}
+        ></i>
       </div>
 
       <div className="profile-details">
@@ -57,11 +81,7 @@ const EditProfile = () => {
             alt="Profile"
             onClick={() => handleImageChange(setProfileImage)}
           />
-          
         </div>
-        <i className="bi bi-pencil-square edit-icon-profile"></i>
-
-        {/* Form Section */}
         <div className="form-section">
           <label>
             Name
@@ -81,13 +101,9 @@ const EditProfile = () => {
           </label>
         </div>
       </div>
-
-      {/* Save Button */}
       <button className="save-button" onClick={handleSave}>
         Save
       </button>
-
-      {/* Add Post Button */}
       <button className="add-post-button">+</button>
     </div>
   );

@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import "../styles/createpost.css";
-import { getStorage, ref, uploadString } from "firebase/storage";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { app } from "./firebase"; 
 
 const CreatePost = () => {
   const [postContent, setPostContent] = useState("");
-  const [media, setMedia] = useState([]); // Store both images and videos
+  const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const storage = getStorage(app); 
-  const db = getFirestore(app); 
   // Handle file upload (Image or Video)
-const handleFileUpload = (event) => {
+  const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
       const fileType = file.type.split("/")[0]; // Check if it's image or video
       const reader = new FileReader();
-  
+
       reader.onload = (e) => {
         const fileData = { type: fileType, data: e.target.result };
-  
+
         // Ensure only valid image or video types are added
         if (fileType === "image" || fileType === "video") {
           setMedia((prev) => [...prev, fileData]);
@@ -29,11 +24,11 @@ const handleFileUpload = (event) => {
           alert("Please select a valid image or video file.");
         }
       };
-  
+
       reader.readAsDataURL(file);
     }
   };
-  
+
   // Handle camera capture (photo)
   const handleCameraClick = async () => {
     try {
@@ -100,44 +95,65 @@ const handleFileUpload = (event) => {
     onSwipedRight: () => setCurrentIndex((prev) => Math.max(prev - 1, 0)),
   });
 
-  // Upload media to Firebase Storage
-  const uploadMedia = async (mediaData) => {
-    const mediaUrls = [];
-    for (const mediaItem of mediaData) {
-      const storageRef = ref(storage, `posts/${Date.now()}`);
-      const uploadTask = uploadString(storageRef, mediaItem.data, "data_url");
-      const snapshot = await uploadTask;
-      const downloadURL = await snapshot.ref.getDownloadURL();
-      mediaUrls.push(downloadURL);
-    }
-    return mediaUrls;
-  };
-
-  // Handle creating a post
+  // Handle creating a post (without Firebase)
   const handleCreatePost = async () => {
     try {
-      // First, upload all media files and get their download URLs
-      const mediaUrls = await uploadMedia(media);
+      // Log the content and media before sending the request
+      console.log("Post Content:", postContent);
+      console.log("Media:", media);
+  
+      // Prepare the form data
+      const formData = new FormData();
+      formData.append("textContent", postContent);
       
-      // Create a new post document in Firestore
-      const postRef = collection(db, "posts"); // Refers to the "posts" collection in Firestore
-      await addDoc(postRef, {
-        content: postContent, // Post content (text)
-        media: mediaUrls, // Array of media URLs (image/video)
-        timestamp: new Date(), // Timestamp of post creation
+      // Append media files to the form data
+      media.forEach((item, index) => {
+        if (item.type === "image") {
+          const blob = dataURItoBlob(item.data);
+          formData.append("media", blob, `image-${index}.png`);
+        } else if (item.type === "video") {
+          const blob = dataURItoBlob(item.data);
+          formData.append("media", blob, `video-${index}.mp4`);
+        }
       });
-      
-      // Alert user of successful post creation
-      alert("Post created successfully!");
-      
-      // Reset the state for the next post
-      setPostContent(""); // Clear the content field
-      setMedia([]); // Clear all selected media
+  
+      // Log the formData entries (for debugging)
+      for (let pair of formData.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+      }
+  
+      // Send data to backend
+      const response = await fetch("http://localhost:5000/create-post", {
+        method: "POST",
+        body: formData,
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Post creation success:", result); // Log success response from the backend
+        alert("Post created successfully!");
+        setPostContent(""); // Clear the content field
+        setMedia([]); // Clear all selected media
+      } else {
+        console.log("Failed to create post:", result); // Log failure response
+        alert("Failed to create post.");
+      }
     } catch (error) {
-      // Catch and log any errors during post creation
-      console.error("Error creating post: ", error);
+      console.error("Error creating post:", error); // Log any errors
       alert("Failed to create post.");
     }
+  };
+  
+  // Helper function to convert base64 to Blob
+  const dataURItoBlob = (dataURI) => {
+    const byteString = atob(dataURI.split(",")[1]);
+    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const uintArray = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      uintArray[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([uintArray], { type: mimeString });
   };
   
 
